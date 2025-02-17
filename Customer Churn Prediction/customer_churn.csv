@@ -1,0 +1,16 @@
+customer_id,gender,age,income,subscription_type,months_subscribed,avg_monthly_spend,customer_support_calls,churn
+1,Male,25,45000,Standard,12,50,3,0
+2,Female,34,54000,Premium,8,70,2,1
+3,Male,45,67000,Standard,24,65,1,0
+4,Female,29,56000,Premium,5,80,1,1
+5,Male,38,60000,Standard,30,60,0,0
+6,Female,22,49000,Standard,6,55,4,1
+7,Male,31,62000,Standard,15,68,2,0
+8,Female,41,70000,Premium,20,75,3,0
+9,Male,27,52000,Standard,12,55,3,0
+10,Female,35,58000,Premium,18,85,1,1
+11,Male,60,75000,Standard,36,60,0,0
+12,Female,50,65000,Premium,9,72,2,1
+13,Male,40,69000,Standard,10,65,1,0
+14,Female,28,55000,Premium,4,78,2,1
+15,Male,33,60000,Standard,24,63,3,0
