@@ -31,13 +31,14 @@ logging.basicConfig(filename="debug_log.txt",
 )
 """
 load_dotenv()
-CORS(app)  # Enable CORS to allow requests from frontend
+CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1:5000", "https://sajjadalinoor.vercel.app"]}})
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 vectorStore=None
 total_pdf=0
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://sajjadalinoor.vercel.app";
+
 UPLOADS_FOLDER = "uploads" 
 openai_api_key = os.getenv("OPENAI_API_KEY_S")
 
