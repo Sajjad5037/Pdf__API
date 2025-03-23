@@ -465,7 +465,7 @@ def static_files(path):
 @app.route("/api/uploads/<path:filename>")
 def serve_pdf(filename):
     return send_from_directory(UPLOADS_FOLDER, filename)
-
+"""
 @app.route('/api/DeleteVS', methods=['POST']) 
 def delete_vectorstore():
     # Define paths for the folders and files
@@ -536,7 +536,7 @@ def get_pdf_files():
         return jsonify(pdf_files)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+"""
 @app.route("/api/upload", methods=["POST"])
 def upload_files():
     if "pdfs" not in request.files:
