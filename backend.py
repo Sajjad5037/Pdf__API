@@ -464,7 +464,7 @@ def static_files(path):
 def serve_pdf(filename):
     return send_from_directory(UPLOADS_FOLDER, filename)
 
-@app.route('/api/DeleteVS', methods=['DELETE'])
+@app.route('/api/DeleteVS', methods=['POST']) 
 def delete_vectorstore():
     # Define paths for the folders and files
     vectorstore_folder_path = "vectorstore.faiss"
