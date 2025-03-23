@@ -42,6 +42,8 @@ BASE_URL = "https://sajjadalinoor.vercel.app";
 
 UPLOADS_FOLDER = "uploads" 
 openai_api_key = os.getenv("OPENAI_API_KEY_S")
+print(app.url_map)
+
 
 
 class Document:
