@@ -449,8 +449,8 @@ def create_qa_chain(vectorstore, question, top_n=5):
         return None, None, None
 
 @app.route("/")
-def serve():
-    return send_from_directory("build", "index.html")
+def home():
+    return jsonify({"message": "API is running!"})
 
 
 #after loading index.html, the browser requests additional resources and these requests contain paths that does not match wthe root route("/")
