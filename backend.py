@@ -32,8 +32,12 @@ logging.basicConfig(filename="debug_log.txt",
 """
 load_dotenv()
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+# Allow requests from frontend only
+CORS(app, resources={r"/api/*": {"origins": [
+    "https://sajjadalinoor.vercel.app",
+    "http://localhost:3000"  # Allow local testing
+]}})
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -538,6 +542,7 @@ def get_pdf_files():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 """
+"""
 @app.route("/api/upload", methods=["GET", "POST"])
 def upload_files():
     if request.method == "GET":
@@ -559,6 +564,13 @@ def upload_files():
         saved_files.append(file.filename)
 
     return jsonify({"message": "Files uploaded successfully", "files": saved_files})
+"""
+@app.route("/api/upload", methods=["GET", "POST"])
+def upload_files():
+    print("🚀 API Hit!")  # Debugging message
+    if request.method == "GET":
+        return jsonify({"message": "Upload endpoint is working. Use POST to upload files."})
+
 
 @app.route('/api/train_model', methods=['POST'])
 def train_model():
