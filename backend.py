@@ -502,7 +502,8 @@ def delete_vectorstore():
 
     except Exception as e:
         # Handle any exceptions that may occur
-        return jsonify({"detail": f"Error deleting VectorStore or uploads folder: {str(e)}"}), 500@app.route('/api/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
+        return jsonify({"detail": f"Error deleting VectorStore or uploads folder: {str(e)}"}), 500
+@app.route('/api/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
 def checkVS():
     current_directory = os.getcwd()
     folder_name = "vectorstore.faiss"
