@@ -35,6 +35,7 @@ CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1:5000", "https://s
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 vectorStore=None
 total_pdf=0
 BASE_URL = "https://sajjadalinoor.vercel.app";
@@ -502,7 +503,7 @@ def delete_vectorstore():
     except Exception as e:
         # Handle any exceptions that may occur
         return jsonify({"detail": f"Error deleting VectorStore or uploads folder: {str(e)}"}), 500
-    
+"""  
 @app.route('/api/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
 def checkVS():
     current_directory = os.getcwd()
@@ -516,8 +517,8 @@ def checkVS():
         return jsonify({"result": "yes"})
     else:
         return jsonify({"result": "no"})
-
-    
+"""
+"""    
 @app.route('/api/pdf-files', methods=['GET']) #for printing the name of pdfs in the uploads folder
 def get_pdf_files():
     # Path to the 'uploads' folder
@@ -534,7 +535,7 @@ def get_pdf_files():
         return jsonify(pdf_files)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+"""
 @app.route("/api/upload", methods=["POST"])
 def upload_files():
     if "pdfs" not in request.files:
