@@ -542,8 +542,11 @@ def get_pdf_files():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 """
-@app.route("/api/upload", methods=["POST"])
+@app.route("/api/upload", methods=["GET", "POST"])
 def upload_files():
+    if request.method == "GET":
+        return jsonify({"message": "Upload endpoint is working. Use POST to upload files."})
+
     if "pdfs" not in request.files:
         return jsonify({"message": "No file part in the request"}), 400
     
