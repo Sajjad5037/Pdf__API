@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory,request,jsonify,url_for
 from flask_cors import CORS
 import fitz 
 import os,re
-app = Flask(__name__, static_folder="build")
+app = Flask(__name__)
 import joblib
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS,VectorStore
