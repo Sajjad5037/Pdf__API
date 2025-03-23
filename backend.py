@@ -448,14 +448,14 @@ def create_qa_chain(vectorstore, question, top_n=5):
         print(f"An unexpected error occurred: {e}")
         return None, None, None
 
-@app.route("/")
+@app.route("/api/")
 def home():
     return jsonify({"message": "API is running!"})
 
 
 #after loading index.html, the browser requests additional resources and these requests contain paths that does not match wthe root route("/")
 # so it will be handled by the second route ("/<path:path>")
-@app.route("/<path:path>") 
+@app.route("/api/<path:path>", methods=["GET", "POST"])
 def static_files(path):
     return send_from_directory("build", path)
 
@@ -535,7 +535,7 @@ def get_pdf_files():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/upload", methods=["POST"])
+@app.route("/api/upload", methods=["POST"])
 def upload_files():
     if "pdfs" not in request.files:
         return jsonify({"message": "No file part in the request"}), 400
