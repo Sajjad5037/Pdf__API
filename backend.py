@@ -459,11 +459,11 @@ def home():
 def static_files(path):
     return send_from_directory("build", path)
 
-@app.route("/uploads/<path:filename>")
+@app.route("/api/uploads/<path:filename>")
 def serve_pdf(filename):
     return send_from_directory(UPLOADS_FOLDER, filename)
 
-@app.route('/DeleteVS', methods=['DELETE'])
+@app.route('/api/DeleteVS', methods=['DELETE'])
 def delete_vectorstore():
     # Define paths for the folders and files
     vectorstore_folder_path = "vectorstore.faiss"
@@ -503,7 +503,7 @@ def delete_vectorstore():
         # Handle any exceptions that may occur
         return jsonify({"detail": f"Error deleting VectorStore or uploads folder: {str(e)}"}), 500
     
-@app.route('/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
+@app.route('/api/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
 def checkVS():
     current_directory = os.getcwd()
     folder_name = "vectorstore.faiss"
@@ -518,7 +518,7 @@ def checkVS():
         return jsonify({"result": "no"})
 
     
-@app.route('/pdf-files', methods=['GET']) #for printing the name of pdfs in the uploads folder
+@app.route('/api/pdf-files', methods=['GET']) #for printing the name of pdfs in the uploads folder
 def get_pdf_files():
     # Path to the 'uploads' folder
     uploads_dir = "uploads"
@@ -554,7 +554,7 @@ def upload_files():
 
     return jsonify({"message": "Files uploaded successfully", "files": saved_files})
 
-@app.route('/train_model', methods=['POST'])
+@app.route('/api/train_model', methods=['POST'])
 def train_model():
     global vectorStore
     global total_pdf
@@ -581,7 +581,7 @@ def train_model():
         return jsonify({"error": "Model could not be trained!"}), 500  # HTTP 500 for server error
     
 
-@app.route('/chat', methods=['POST'])
+@app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.json  # Get JSON data from the request
     user_message = data.get('message', '')  # Extract user message
