@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory,request,jsonify,url_for
 from flask_cors import CORS
 import fitz 
 import os,re
-app = Flask(__name__)
+
 import joblib
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS,VectorStore
@@ -31,7 +31,12 @@ logging.basicConfig(filename="debug_log.txt",
 )
 """
 load_dotenv()
-CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1:5000", "https://sajjadalinoor.vercel.app"]}})
+app = Flask(__name__)
+CORS(app, resources={r"/api/*": {
+    "origins": ["http://127.0.0.1:5000", "https://sajjadalinoor.vercel.app"],
+    "methods": ["GET", "POST", "PUT", "DELETE"],
+    "allow_headers": ["Content-Type", "Authorization"]
+}})
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
