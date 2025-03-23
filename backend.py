@@ -471,7 +471,7 @@ def delete_vectorstore():
     embeddings_file_path = "embeddings.pkl"
     uploads_folder_path = "uploads"  # New folder to delete
 
-     # Deleting the vectorstore folder if it exists
+    # Deleting the vectorstore folder if it exists
     deleted_anything = False  # Flag to check if anything was deleted
 
     try:
@@ -491,20 +491,18 @@ def delete_vectorstore():
         if os.path.exists(uploads_folder_path):
             shutil.rmtree(uploads_folder_path)  # Remove non-empty directory
             print(f"Folder {uploads_folder_path} deleted successfully")
-            os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+            os.makedirs(uploads_folder_path, exist_ok=True)  # Make a new upload folder
             deleted_anything = True  # Mark as deleted
 
         # Return success message only if something was deleted
         if deleted_anything:
-             #make a new upload folder to save user pdf files later
             return jsonify({"message": "VectorStore and/or uploads folder deleted successfully"}), 200
-        return "", 204  # No Content response if nothing was deleted    
+        
+        return jsonify({"message": "Nothing to delete"}), 204  # No Content response if nothing was deleted    
 
     except Exception as e:
         # Handle any exceptions that may occur
-        return jsonify({"detail": f"Error deleting VectorStore or uploads folder: {str(e)}"}), 500
-  
-@app.route('/api/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
+        return jsonify({"detail": f"Error deleting VectorStore or uploads folder: {str(e)}"}), 500@app.route('/api/checkVS', methods=['GET'])  # for printing the name of PDFs in the uploads folder
 def checkVS():
     current_directory = os.getcwd()
     folder_name = "vectorstore.faiss"
