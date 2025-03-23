@@ -32,11 +32,7 @@ logging.basicConfig(filename="debug_log.txt",
 """
 load_dotenv()
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {
-    "origins": ["http://127.0.0.1:5000", "https://sajjadalinoor.vercel.app"],
-    "methods": ["GET", "POST", "PUT", "DELETE"],
-    "allow_headers": ["Content-Type", "Authorization"]
-}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
